@@ -8,6 +8,10 @@
 
 namespace ariel
 {
+////////
+// The static data members
+double PhysicalNumber::_epsilon = EPSILON;
+
 ////--------------------------------------------------------------------------------------------
 // Print "digit[unit]"
 std::ostream &operator<<(std::ostream &os, const PhysicalNumber &ob)
@@ -297,6 +301,20 @@ PhysicalNumber::PhysicalNumber(double num, Unit unit) : _num(num), _unit(unit)
 }
 
 ////--------------------------------------------------------------------------------------------
+// Get epsilon, static function
+double PhysicalNumber::get_epsilon()
+{
+    return _epsilon;
+}
+
+////--------------------------------------------------------------------------------------------
+// Set epsilon, static function
+void PhysicalNumber::set_epsilon(double epsilon)
+{
+    _epsilon = epsilon;
+}
+
+////--------------------------------------------------------------------------------------------
 // Operator+ (a + b)
 const PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber &ob) const
 {
@@ -387,7 +405,7 @@ bool PhysicalNumber::operator==(const PhysicalNumber &ob) const
     PhysicalNumber temp(ob.convert(this->check(ob)), this->_unit);
     double diff = abs(temp._num - this->_num);
 
-    if (diff < EPSILON)
+    if (diff <= _epsilon)
         return true;
     else
         return false;
@@ -409,7 +427,7 @@ bool PhysicalNumber::operator<(const PhysicalNumber &ob) const
 {
     PhysicalNumber temp(ob.convert(this->check(ob)), this->_unit);
 
-    if ((temp._num - this->_num) > EPSILON)
+    if ((temp._num - this->_num) > _epsilon)
         return true;
     else
         return false;
@@ -421,7 +439,7 @@ bool PhysicalNumber::operator>(const PhysicalNumber &ob) const
 {
     PhysicalNumber temp(ob.convert(this->check(ob)), this->_unit);
 
-    if ((this->_num - temp._num) > EPSILON)
+    if ((this->_num - temp._num) > _epsilon)
         return true;
     else
         return false;

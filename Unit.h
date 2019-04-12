@@ -4,8 +4,8 @@
 
 namespace ariel
 {
-#define LEN 9            // length of array --string--
-#define EPSILON 0.000001 // precision
+#define LEN 9     // length of array --string--
+#define EPSILON 0 // precision
 
 enum class Unit
 {

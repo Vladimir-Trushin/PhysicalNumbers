@@ -41,6 +41,7 @@ class PhysicalNumber
 private:
   double _num;
   Unit _unit;
+  static double _epsilon; // precision
 
   ////--------------------------------------------------------------------------------------------
   // Check if units match, absolute difference value
@@ -75,6 +76,14 @@ public:
   ////--------------------------------------------------------------------------------------------
   // Constructor and destructor
   PhysicalNumber(double num, Unit unit);
+
+  ////--------------------------------------------------------------------------------------------
+  // Get epsilon, static function
+  static double get_epsilon();
+
+  ////--------------------------------------------------------------------------------------------
+  // Set epsilon, static function
+  static void set_epsilon(double epsilon);
 
   ////--------------------------------------------------------------------------------------------
   // Arithmetic operators+ overload

@@ -132,7 +132,10 @@ int main()
         .CHECK_OK(a--)
         .CHECK_OK(--a)
         .CHECK_EQUAL(a == b, true) // true (a = 1, b = 1)
+        ;
 
+    PhysicalNumber::set_epsilon(0.000001); // changing the precision
+    testcase
         .setname("My test7") //-----------------------------------------------<7>
 
         .CHECK_OK(istringstream("10.000001[m]") >> a) // 1-E6
@@ -147,7 +150,7 @@ int main()
 
         .CHECK_EQUAL(a != b, false) // false - it's work because precision is: 1-E6
         .CHECK_EQUAL(a < b, false)  // false - it's work because precision is: 1-E6
-        // Change the EPSILON in the file Unit.h to change the precision
+        // Change the EPSILON in the file Unit.h to change the precision by default
 
         .print(cout, /*show_grade=*/false);
     grade = testcase.grade();
