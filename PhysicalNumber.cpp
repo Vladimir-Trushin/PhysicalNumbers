@@ -387,7 +387,7 @@ bool PhysicalNumber::operator==(const PhysicalNumber &ob) const
     PhysicalNumber temp(ob.convert(this->check(ob)), this->_unit);
     double diff = abs(temp._num - this->_num);
 
-    if (diff < SIGMA)
+    if (diff < EPSILON)
         return true;
     else
         return false;
@@ -409,7 +409,7 @@ bool PhysicalNumber::operator<(const PhysicalNumber &ob) const
 {
     PhysicalNumber temp(ob.convert(this->check(ob)), this->_unit);
 
-    if ((temp._num - this->_num) > SIGMA)
+    if ((temp._num - this->_num) > EPSILON)
         return true;
     else
         return false;
@@ -421,7 +421,7 @@ bool PhysicalNumber::operator>(const PhysicalNumber &ob) const
 {
     PhysicalNumber temp(ob.convert(this->check(ob)), this->_unit);
 
-    if ((this->_num - temp._num) > SIGMA)
+    if ((this->_num - temp._num) > EPSILON)
         return true;
     else
         return false;
