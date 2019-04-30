@@ -31,10 +31,10 @@ std::istream &operator>>(std::istream &os, PhysicalNumber &ob)
     std::regex match_regex("^(((\\+|-)?[[:digit:]]+)(\\.(([[:digit:]]+)?))?(\\[([[:alpha:]]+)\\]))$", std::regex_constants::ECMAScript);
 
     // The regular expression which match the unit --[unit]--
-    std::regex digit_regex("(((\\+|-)?[[:digit:]]+)(\\.(([[:digit:]]+)?))?)", std::regex_constants::ECMAScript);
+    std::regex unit_regex("(\\[([[:alpha:]]+)\\])", std::regex_constants::ECMAScript);
 
     // The regular expression which match the digit --digit-- ( (+-)xx || (+-)xx. || (+-)xx.xx )
-    std::regex unit_regex("(\\[([[:alpha:]]+)\\])", std::regex_constants::ECMAScript);
+    std::regex digit_regex("(((\\+|-)?[[:digit:]]+)(\\.(([[:digit:]]+)?))?)", std::regex_constants::ECMAScript);
 
     std::smatch s_match;         // The match string
     std::string unit_str_l = ""; // unit lowercase
@@ -80,7 +80,7 @@ std::istream &operator>>(std::istream &os, PhysicalNumber &ob)
 // one unit to another unit in the same field can't be bigger 2
 int PhysicalNumber::check(const PhysicalNumber &ob) const
 {
-    int temp = (size_t)ob._unit - (size_t)this->_unit;
+    int temp = (int)ob._unit - (int)this->_unit;
 
     if ((temp < -2) || (2 < temp))
         throw std::logic_error("Units do not match - " + ob.print_unit() + " cannot be converted to " + this->print_unit());
