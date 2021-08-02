@@ -1,8 +1,7 @@
-# task_3
 
-Name of student: Vladimir Trushin
+Vladimir Trushin
 
-#task_3 Third assignment: PhysicalNumber
+PhysicalNumber
 
 To create the demo and run, use the following command: make demo && ./demo
 
